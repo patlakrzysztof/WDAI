@@ -1,7 +1,21 @@
+.pirata-one-regular {
+  font-family: "Pirata One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pirata One";
+  src: url("./fonts/Pirata_One/PirataOne-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 html {
-  background-color: #6b0497;
+  background-color: black;
   height: 100vh;
 }
+
 body {
   height: 100vh;
   margin: 0;
@@ -12,14 +26,12 @@ h1 {
 h2 {
   text-align: center;
 }
-.quintessential-regular {
-  font-family: "Quintessential", serif;
-  font-weight: 400;
-  font-style: normal;
-}
 nav {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   background-color: black;
+  font-size: x-large;
   width: 100%;
   padding: 15px 20px;
   gap: 3%;
@@ -29,9 +41,62 @@ nav {
 nav a {
   color: red;
 }
+.banner {
+  margin-top: 50px;
+  background-image: url("./src/ozzy\ horizontal.webp");
+  background-size: cover;
+  background-position: center;
+  height: 75vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.banner h1 {
+  color: #6e3e96;
+  font-size: 8vw;
+  text-shadow: 5px 5px 10px black;
+}
+.albums {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+.albums-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.albums-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.album {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+.songs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+}
+li {
+  color: white;
+}
 footer {
   background-color: black;
-  text-align: right;
+  display: flex;
+  justify-content: end;
   position: fixed;
   width: 100%;
   bottom: 0;
@@ -39,16 +104,17 @@ footer {
 footer p {
   padding: 0 10px;
   color: red;
-  font-size: small;
+  font-size: medium;
 }
 form {
-  margin: 100px auto;
-  background: black;
+  margin: 100px 20px;
+  background: white;
   padding: 20px;
-  width: 75%;
+  width: 50%;
+  border-radius: 10px;
 }
 form label {
-  color: white;
+  color: black;
   font-weight: bold;
 }
 
