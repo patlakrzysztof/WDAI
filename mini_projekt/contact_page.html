@@ -1,0 +1,60 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+    <link rel="stylesheet" href="./style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <nav>
+        <a href="./index.html">Home</a>
+        <a href="./gallery_page.html">Gallery</a>
+        <a href="./contact_page.html">Contact</a>
+      </nav>
+      <form>
+        <div>
+          <label for="email">Email: </label>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div>
+          <label for="topic">Topic: </label>
+          <select id="topic" name="topic" required>
+            <option value="">--Select Topic--</option>
+            <option value="music">Opinions about Ozzy's discography</option>
+            <option value="community">Tell us about our community</option>
+            <option value="page">Notes and complains about our page</option>
+          </select>
+        </div>
+        <div>
+          <label for="message">Message: </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="10"
+            placeholder="I love Ozzy Ozbourne! ..."
+            required
+          ></textarea>
+        </div>
+        <input type="submit" value="Submit" />
+      </form>
+      <footer>
+        <p>Author: Krzysztof Patla</p>
+      </footer>
+    </main>
+    <script src="index.js"></script>
+  </body>
+</html>
