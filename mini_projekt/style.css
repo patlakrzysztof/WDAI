@@ -128,6 +128,20 @@ li {
   justify-content: center;
   color: white;
 }
+.gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 60px;
+  gap: 30px;
+  justify-content: space-around;
+}
+.photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 footer {
   background-color: black;
   display: flex;
