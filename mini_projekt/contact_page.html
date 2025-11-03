@@ -13,38 +13,42 @@
         <a href="./gallery_page.html">Gallery</a>
         <a href="./contact_page.html">Contact</a>
       </nav>
-      <form>
-        <div>
-          <label for="email">Email: </label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            placeholder="Enter your email"
-            required
-          />
-        </div>
-        <div>
-          <label for="topic">Topic: </label>
-          <select id="topic" name="topic" required>
-            <option value="">--Select Topic--</option>
-            <option value="music">Opinions about Ozzy's discography</option>
-            <option value="community">Tell us about our community</option>
-            <option value="page">Notes and complains about our page</option>
-          </select>
-        </div>
-        <div>
-          <label for="message">Message: </label>
-          <textarea
-            id="message"
-            name="message"
-            rows="10"
-            placeholder="Type a message like: I love Ozzy Osbourne! ..."
-            required
-          ></textarea>
-        </div>
-        <input type="submit" value="Submit" />
-      </form>
+      <h1 style="color: red; margin-top: 100px">Share your opinion!</h1>
+      <div class="contact">
+        <form>
+          <div>
+            <label for="email">Email: </label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div>
+            <label for="topic">Topic: </label>
+            <select id="topic" name="topic" required>
+              <option value="">--Select Topic--</option>
+              <option value="music">Opinions about Ozzy's discography</option>
+              <option value="community">Tell us about our community</option>
+              <option value="page">Notes and complains about our page</option>
+            </select>
+          </div>
+          <div>
+            <label for="message">Message: </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="10"
+              placeholder="Type a message like: I love Ozzy Osbourne! ..."
+              required
+            ></textarea>
+          </div>
+          <input type="submit" value="Submit" class="submit-btn" />
+        </form>
+        <img src="./src/ozzy-mic.jpg" height="500vh" width="300vh" />
+      </div>
       <footer>
         <div id="clock" class="clock">Current time: --:--:--</div>
         <p>Author: Krzysztof Patla</p>
