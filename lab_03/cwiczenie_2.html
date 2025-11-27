@@ -1,0 +1,80 @@
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate password</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="main-container">
+      <div style="margin-top: 30vh">
+        <label> min password length </label>
+        <input type="text" id="minl" />
+      </div>
+      <div style="margin-top: 5vh">
+        <label> max password length </label>
+        <input type="text" id="maxl" />
+      </div>
+      <div style="margin-top: 5vh">
+        <label> Capital letters </label>
+        <input type="checkbox" id="capLet" />
+      </div>
+      <div style="margin-top: 5vh">
+        <label> Special characters </label>
+        <input type="checkbox" id="specChar" />
+      </div>
+      <button style="margin-top: 5vh" id="generate">Generate password</button>
+    </main>
+    <script>
+      const letters = "abcdefghijklmnoprstuwyxz";
+      const capitalLetters = "ABCDEFGHIJKLMNOPRSTUWYXZ";
+      const characters = "!@#$%^&*_-";
+
+      const button = document.getElementById("generate");
+
+      function generatePassword() {
+        const minl = parseInt(document.getElementById("minl").value);
+        const maxl = parseInt(document.getElementById("maxl").value);
+        if (minl > maxl) {
+          alert("Minimal value can't be greater than maximum");
+          return;
+        }
+        if (minl < 0 || maxl < 0) {
+          alert("Values must be greater than 0");
+          return;
+        }
+
+        const ifCapLet = document.getElementById("capLet").checked;
+        const ifSpecChar = document.getElementById("specChar").checked;
+        const length = Math.floor(Math.random() * (maxl - minl) + minl);
+        let password = "";
+        if (ifCapLet && ifSpecChar) {
+          const chars = letters + capitalLetters + characters;
+          for (let i = 0; i < length; i++) {
+            password += chars[Math.floor(Math.random() * chars.length)];
+          }
+        } else if (ifCapLet) {
+          const chars = letters + capitalLetters;
+          for (let i = 0; i < length; i++) {
+            password += chars[Math.floor(Math.random() * chars.length)];
+          }
+        } else if (ifSpecChar) {
+          const chars = letters + characters;
+          for (let i = 0; i < length; i++) {
+            password += chars[Math.floor(Math.random() * chars.length)];
+          }
+        } else {
+          const chars = letters;
+          for (let i = 0; i < length; i++) {
+            password += chars[Math.floor(Math.random() * chars.length)];
+          }
+        }
+
+        alert("Your new password: " + password);
+      }
+
+      button.addEventListener("click", () => generatePassword());
+      removeEventListener("click", button);
+    </script>
+  </body>
+</html>

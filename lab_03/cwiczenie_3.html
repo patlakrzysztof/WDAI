@@ -1,0 +1,43 @@
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connect with API</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="main-container">
+      <table style="row-gap: 20px">
+        <tr>
+          <th>Photo</th>
+          <th>Title</th>
+          <th>Description</th>
+        </tr>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </main>
+    <script>
+      fetch("https://dummyjson.com/products")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Błąd sieci: " + response.status);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          const body = document.getElementById("tableBody");
+
+          for (const product of data.products) {
+            const row = `
+            <tr>
+              <td><img src="${product.thumbnail}" style="width:10vw"></td>
+            <td>${product.title}</td>
+            <td>${product.description}</td>
+            <tr/>`;
+
+            body.innerHTML += row;
+          }
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timer</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="main-container">
+      <div style="margin-top: 40vh">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+      </div>
+      <p id="timer" style="font-size: xxx-large">0 s</p>
+    </main>
+    <script>
+      function twoDigits(n) {
+        if (n < 10) {
+          return "0" + n;
+        } else {
+          return String(n);
+        }
+      }
+
+      let seconds = 0;
+
+      function updateStoper() {
+        seconds++;
+        const min = twoDigits(Math.floor(seconds / 60));
+        const sec = twoDigits(seconds % 60);
+        if (seconds >= 60) {
+          document.getElementById("timer").textContent = `${min} min ${sec} s`;
+        } else {
+          document.getElementById("timer").textContent = `${sec} s`;
+        }
+      }
+
+      let interval = null;
+
+      startbtn = document.getElementById("start");
+      startbtn.addEventListener("click", () => {
+        if (interval == null) {
+          interval = setInterval(updateStoper, 1000);
+        }
+      });
+
+      stopbtn = document.getElementById("stop");
+      stopbtn.addEventListener("click", () => {
+        clearInterval(interval);
+      });
+
+      resetbtn = document.getElementById("reset");
+      resetbtn.addEventListener("click", () => {
+        seconds = 0;
+        clearInterval(interval);
+        interval = null;
+        document.getElementById("timer").textContent = `${seconds} s`;
+      });
+
+      removeEventListener("click", startbtn);
+      removeEventListener("click", stopbtn);
+      removeEventListener("click", resetbtn);
+    </script>
+  </body>
+</html>
