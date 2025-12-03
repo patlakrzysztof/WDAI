@@ -7,16 +7,24 @@
   </head>
   <body>
     <main class="main-container">
+      <div style="display: flex; flex-direction: row; align-items: center">
+        <p>filter by:</p>
+        <input id="filter-by" type="text" placeholder="Search" />
+      </div>
+      <br />
       <table style="row-gap: 20px">
         <tr>
           <th>Photo</th>
           <th>Title</th>
           <th>Description</th>
+          <br />
         </tr>
-        <tbody id="tableBody"></tbody>
+        <tbody id="table-body"></tbody>
       </table>
     </main>
     <script>
+      const body = document.getElementById("table-body");
+
       fetch("https://dummyjson.com/products")
         .then((response) => {
           if (!response.ok) {
@@ -25,19 +33,36 @@
           return response.json();
         })
         .then((data) => {
-          const body = document.getElementById("tableBody");
-
           for (const product of data.products) {
             const row = `
-            <tr>
-              <td><img src="${product.thumbnail}" style="width:10vw"></td>
-            <td>${product.title}</td>
-            <td>${product.description}</td>
-            <tr/>`;
+              <tr>
+                <td><img src="${product.thumbnail}" style="width:10vw"></td>
+                <td>${product.title}</td>
+                <td>${product.description}</td>
+              <tr/>`;
 
             body.innerHTML += row;
           }
         });
+
+      const input = document.getElementById("filter-by");
+
+      input.addEventListener("input", () => {
+        const filter = input.value.toUpperCase();
+        const rows = body.getElementsByTagName("tr");
+
+        for (let i = 0; i < rows.length; i++) {
+          let td = rows[i].getElementsByTagName("td")[1];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().includes(filter)) {
+              rows[i].style.display = "";
+            } else {
+              rows[i].style.display = "none";
+            }
+          }
+        }
+      });
     </script>
   </body>
 </html>
