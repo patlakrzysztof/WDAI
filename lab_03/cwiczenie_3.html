@@ -10,6 +10,11 @@
       <div style="display: flex; flex-direction: row; align-items: center">
         <p>filter by:</p>
         <input id="filter-by" type="text" placeholder="Search" />
+        <select id="sort-by">
+          <option id="sort-def">Default</option>
+          <option id="sort-asc">Ascending</option>
+          <option id="sort-desc">Descending</option>
+        </select>
       </div>
       <br />
       <table style="row-gap: 20px">
@@ -24,6 +29,9 @@
     </main>
     <script>
       const body = document.getElementById("table-body");
+      const input = document.getElementById("filter-by");
+      const sort = document.getElementById("sort-by");
+      let table = [];
 
       fetch("https://dummyjson.com/products")
         .then((response) => {
@@ -33,36 +41,57 @@
           return response.json();
         })
         .then((data) => {
-          for (const product of data.products) {
-            const row = `
+          table = data.products;
+          renderTable();
+        });
+
+      function renderTable() {
+        body.innerHTML = "";
+
+        let filtered = table.filter((elem) =>
+          elem.title.toUpperCase().includes(input.value.toUpperCase())
+        );
+
+        if (sort.value === "Ascending") {
+          filtered.sort((a, b) => a.title.localeCompare(b.title));
+        } else if (sort.value === "Descending") {
+          filtered.sort((a, b) => b.title.localeCompare(a.title));
+        }
+
+        for (const product of filtered) {
+          const row = `
               <tr>
                 <td><img src="${product.thumbnail}" style="width:10vw"></td>
                 <td>${product.title}</td>
                 <td>${product.description}</td>
               <tr/>`;
 
-            body.innerHTML += row;
-          }
-        });
-
-      const input = document.getElementById("filter-by");
-
-      input.addEventListener("input", () => {
-        const filter = input.value.toUpperCase();
-        const rows = body.getElementsByTagName("tr");
-
-        for (let i = 0; i < rows.length; i++) {
-          let td = rows[i].getElementsByTagName("td")[1];
-          if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().includes(filter)) {
-              rows[i].style.display = "";
-            } else {
-              rows[i].style.display = "none";
-            }
-          }
+          body.innerHTML += row;
         }
-      });
+      }
+
+      input.addEventListener("input", () => renderTable());
+      sort.addEventListener("change", () => renderTable());
+
+      // pierwsza proba sortowania bez uzycia filter
+
+      // input.addEventListener("input", () => {
+      //   const filter = input.value.toUpperCase();
+      //   const rows = body.getElementsByTagName("tr");
+      //   let showed = data.products;
+
+      //   for (let i = 0; i < showed.length; i++) {
+      //     let td = showed[i].getElementsByTagName("td")[1];
+      //     if (td) {
+      //       txtValue = td.textContent || td.innerText;
+      //       if (txtValue.toUpperCase().includes(filter)) {
+      //         showed[i].style.display = "";
+      //       } else {
+      //         showed[i].style.display = "none";
+      //       }
+      //     }
+      //   }
+      // });
     </script>
   </body>
 </html>
