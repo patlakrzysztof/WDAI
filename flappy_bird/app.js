@@ -21,8 +21,8 @@ let groundImg;
 //bird
 const birdWidth = 34;
 const birdHeight = 24;
-let birdX = boardWidth / 2 - 15;
-let birdY = boardHeight / 2;
+let birdX = boardWidth / 2 - 10;
+let birdY = boardHeight / 2 - 18;
 let birdImg;
 let birdImgs = [];
 
@@ -42,6 +42,12 @@ const pipeY = 0;
 
 let topPipeImg;
 let bottomPipeImg;
+
+//sounds
+const sfx_die = new Audio("./assets/Sound Efects/die.wav");
+const sfx_hit = new Audio("./assets/Sound Efects/hit.wav");
+const sfx_point = new Audio("./assets/Sound Efects/point.wav");
+const sfx_wing = new Audio("./assets/Sound Efects/wing.wav");
 
 //physics
 const speedX = -2; //pipe moving speed
@@ -138,15 +144,24 @@ function update() {
   requestAnimationFrame(update); //update in loop
 
   if (gameOver) {
-    context.drawImage(gameOverImg, boardWidth / 6, boardHeight / 3);
+    context.drawImage(
+      gameOverImg,
+      boardWidth / 2 - gameOverImg.width / 2,
+      boardHeight / 3
+    );
     context.fillStyle = "white";
     context.font = "20 px sans-serif";
-    context.fillText("Score: " + score, boardWidth / 5, boardHeight / 2);
+    context.fillText("Best: " + score, boardWidth / 4, boardHeight / 2);
+    context.fillText("Try Again :)", boardWidth / 8, boardHeight / 2 + 100);
     return;
   }
 
   context.clearRect(0, 0, boardWidth, boardHeight); //clearing canvas
   frame++;
+
+  //flying animation
+  let index = Math.floor(frame / 10) % birdImgs.length;
+  birdImg = birdImgs[index];
 
   if (showMenu) {
     context.drawImage(menuImg, menu.x, menu.y, menu.width, menu.height);
@@ -157,16 +172,13 @@ function update() {
       ground.width,
       ground.height
     );
+    context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
     return;
   }
 
   //bird
   speedY += gravity;
   bird.y = Math.max(bird.y + speedY, 0); // border at the top
-
-  //flying animation
-  let index = Math.floor(frame / 10) % birdImgs.length;
-  birdImg = birdImgs[index];
 
   //rotating the bird
   context.save(); //save canvas to restore it after rotating a bird
@@ -186,7 +198,9 @@ function update() {
 
   //draw ground
   context.drawImage(groundImg, ground.x, ground.y, ground.width, ground.height);
+
   if (collision(bird, ground)) {
+    sfx_hit.play();
     gameOver = true;
   }
 
@@ -199,11 +213,13 @@ function update() {
     context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
 
     if (!pipe.passed && bird.x > pipe.x + pipe.width) {
+      sfx_point.play();
       score += 0.5; //because top and bottom pipe
       pipe.passed = true;
     }
 
     if (collision(bird, pipe)) {
+      sfx_hit.play();
       dead = true;
     }
   }
