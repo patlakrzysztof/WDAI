@@ -1,12 +1,12 @@
 //board
 let board;
 const boardWidth = 288;
-const boardHeight = 512 + 112;
+const boardHeight = 512;
 let context;
 
 //menu
 const menuX = boardWidth / 5;
-const menuY = boardHeight / 5;
+const menuY = boardHeight / 7;
 const menuWidth = 184;
 const menuHeight = 267;
 let menuImg;
@@ -15,16 +15,19 @@ let menuImg;
 const groundWidth = 288;
 const groundHeight = 112;
 const groundX = 0;
-const groundY = boardHeight - groundHeight;
+const groundY = boardHeight - groundHeight + 20;
 let groundImg;
 
 //bird
 const birdWidth = 34;
 const birdHeight = 24;
 let birdX = boardWidth / 2 - 10;
-let birdY = boardHeight / 2 - 18;
+let birdY = boardHeight / 2 - 15;
 let birdImg;
 let birdImgs = [];
+
+//digits
+let digitImgs = [];
 
 //flying animation
 const birdFrames = [
@@ -39,7 +42,6 @@ const pipeWidth = 52;
 const pipeHeight = 320;
 const pipeX = boardWidth;
 const pipeY = 0;
-
 let topPipeImg;
 let bottomPipeImg;
 
@@ -48,6 +50,9 @@ const sfx_die = new Audio("./assets/Sound Efects/die.wav");
 const sfx_hit = new Audio("./assets/Sound Efects/hit.wav");
 const sfx_point = new Audio("./assets/Sound Efects/point.wav");
 const sfx_wing = new Audio("./assets/Sound Efects/wing.wav");
+let music = new Audio("./assets/Sound Efects/music.mp3");
+music.loop = true;
+music.volume = 0.5;
 
 //physics
 const speedX = -2; //pipe moving speed
@@ -57,6 +62,7 @@ const gravity = 0.4;
 let showMenu = true;
 let gameOver = false;
 let dead = false;
+let gameOverImg;
 let score = 0;
 let frame = 0;
 const maxUpAngle = -Math.PI / 4;
@@ -90,6 +96,12 @@ window.onload = () => {
   context = board.getContext("2d"); //drawing on board
 
   //imgs
+  for (let i = 0; i <= 9; i++) {
+    let img = new Image();
+    img.src = `./assets/UI/Numbers/${i}.png`;
+    digitImgs.push(img);
+  }
+
   menuImg = new Image();
   menuImg.src = "./assets/UI/message.png";
 
@@ -135,6 +147,8 @@ window.onload = () => {
     context.drawImage(menuImg, menu.x, menu.y, menu.width, menu.height);
   };
 
+  // localStorage.clear(); to clear past scores
+
   requestAnimationFrame(update);
   setInterval(placePipes, 1500);
   document.addEventListener("keydown", jump); //jumping
@@ -144,15 +158,46 @@ function update() {
   requestAnimationFrame(update); //update in loop
 
   if (gameOver) {
+    saveScore(score);
+    let scores = JSON.parse(localStorage.getItem("scores"));
     context.drawImage(
       gameOverImg,
       boardWidth / 2 - gameOverImg.width / 2,
-      boardHeight / 3
+      boardHeight / 5
     );
     context.fillStyle = "white";
-    context.font = "20 px sans-serif";
-    context.fillText("Best: " + score, boardWidth / 4, boardHeight / 2);
-    context.fillText("Try Again :)", boardWidth / 8, boardHeight / 2 + 100);
+    context.font = "30px sans-serif";
+    context.fillText("Best:", boardWidth / 2 - 35, boardHeight / 3 + 20);
+    if (scores[0] != 0) {
+      displayNum(
+        scores[0],
+        boardWidth / 2 -
+          (digitImgs[0].width * Math.floor(Math.log10(scores[0]) + 1)) / 2,
+        boardHeight / 3 + 30
+      );
+    } else {
+      displayNum(
+        scores[0],
+        boardWidth / 2 - digitImgs[0].width / 2,
+        boardHeight / 3 + 30
+      );
+    }
+    context.fillText("Current:", boardWidth / 2 - 50, boardHeight / 3 + 100);
+    if (score != 0) {
+      displayNum(
+        score,
+        boardWidth / 2 -
+          (digitImgs[0].width * Math.floor(Math.log10(score) + 1)) / 2,
+        boardHeight / 3 + 110
+      );
+    } else {
+      displayNum(
+        score,
+        boardWidth / 2 - digitImgs[0].width / 2,
+        boardHeight / 3 + 110
+      );
+    }
+    context.fillText("Try Again :)", boardWidth / 4, boardHeight / 2 + 150);
     return;
   }
 
@@ -228,9 +273,15 @@ function update() {
     pipeArr.shift(); //remove pipe behind the screen
   }
 
-  context.fillStyle = "white";
-  context.font = "45px sans-serif";
-  context.fillText(score, boardWidth - score.toString().length * 25 - 5, 45);
+  if (score != 0) {
+    displayNum(
+      score,
+      boardWidth - digitImgs[0].width * Math.floor(Math.log10(score) + 1),
+      0
+    );
+  } else {
+    displayNum(score, boardWidth - digitImgs[0].width, 0);
+  }
 }
 
 function placePipes() {
@@ -268,13 +319,17 @@ function jump(key) {
   if (key.code == "Space") {
     if (showMenu) {
       showMenu = false;
+      music.play();
     }
     if (!dead) {
       //jump
+      sfx_wing.play();
       speedY = -6;
     }
     //reset game
     if (gameOver) {
+      music.pause();
+      music.currentTime = 0;
       showMenu = true;
       bird.y = birdY;
       speedY = -6;
@@ -296,6 +351,19 @@ function collision(bird, obstacle) {
   );
 }
 
-function displayNum(num) {
-  // to make
+function displayNum(number, x, y) {
+  let digits = number.toString().split("");
+
+  digits.forEach((digit, i) => {
+    let img = digitImgs[digit];
+    context.drawImage(img, x + i * img.width, y, img.width, img.height);
+  });
+}
+
+function saveScore(score) {
+  let scores = JSON.parse(localStorage.getItem("scores")) || [];
+  scores.push(score);
+  scores.sort((a, b) => b - a);
+  scores = scores.slice(0, 5);
+  localStorage.setItem("scores", JSON.stringify(scores));
 }
