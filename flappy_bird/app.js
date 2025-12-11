@@ -289,7 +289,7 @@ function placePipes() {
     return;
   }
 
-  let randomPipeY = pipeY - Math.random() * (pipeHeight / 2); //pipe lenght from 1/2 to 1 of its original lenght
+  let randomPipeY = pipeY - Math.random() * (pipeHeight / 2); //pipe length from 1/2 to 1 of its original length
   let holeHeight = boardHeight / 5;
 
   let topPipe = {
