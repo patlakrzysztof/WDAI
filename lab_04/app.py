@@ -6,6 +6,8 @@ import jwt
 import sqlite3
 from functools import wraps
 
+# to start type: py -m flask run
+
 app = Flask(__name__)
 
 def token_required(f):
