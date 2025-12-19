@@ -8,92 +8,6 @@
 	},
 	"item": [
 		{
-			"name": "GET books",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3001/api/books",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3001",
-					"path": [
-						"api",
-						"books"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET one book",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3001/api/books/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3001",
-					"path": [
-						"api",
-						"books",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST books",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzY2MDk5ODUyLCJleHAiOjE3NjYxMDM0NTJ9.TYbHUrW0L2D09bKj_XfpBlCSBp3T04_DdzCzKiOq_wY",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"title\": \"Pan Tadeusz\",\r\n  \"author\": \"Adam Mickiewicz\",\r\n  \"year\": 1834\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3001/api/books",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3001",
-					"path": [
-						"api",
-						"books"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "POST login",
 			"request": {
 				"auth": {
@@ -126,14 +40,100 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:3001/api/books/1",
+			"name": "POST books",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzY2MDk5ODUyLCJleHAiOjE3NjYxMDM0NTJ9.TYbHUrW0L2D09bKj_XfpBlCSBp3T04_DdzCzKiOq_wY",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Pan Tadeusz\",\r\n  \"author\": \"Adam Mickiewicz\",\r\n  \"year\": 1834\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET books",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET one book",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/books/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"books",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE one book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -145,7 +145,7 @@
 					"raw": "{\r\n  \"title\": \"Pan Tadeusz\",\r\n  \"author\": \"Adam Mickiewicz\",\r\n  \"year\": 1834\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3001/api/books/1",
+					"raw": "http://localhost:3001/api/books/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -154,11 +154,41 @@
 					"path": [
 						"api",
 						"books",
-						"1"
+						"2"
 					]
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
 		}
 	]
 }
