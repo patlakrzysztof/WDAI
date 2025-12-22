@@ -2,6 +2,10 @@
 // import Welcome from "./components/Welcome";
 // import Goodbye from "./components/Goodbye";
 
+import CounterEff from "./components/efekty/LicznikEff";
+import Countdown from "./components/efekty/Odliczanie";
+import Title from "./components/efekty/Tytul";
+
 // zad 1
 // import ShoppingCart from "./components/koszyk/Koszyk";
 // import NewShoppingCart from "./components/koszyk/NowyKoszyk";
@@ -20,8 +24,8 @@
 // import Ternary from "./components/inne/Ternary";
 
 // zad 5
-import Students from "./components/studenci/Studenci";
-import StudentManager from "./components/studenci/StudentManager";
+// import Students from "./components/studenci/Studenci";
+// import StudentManager from "./components/studenci/StudentManager";
 
 function App() {
   return (
@@ -43,8 +47,13 @@ function App() {
       {/* zad4
       <Ternary />
       <Update /> */}
+      {/* zad5
       <Students />
-      <StudentManager />
+      <StudentManager /> */}
+      zad6
+      <CounterEff />
+      <Title />
+      <Countdown />
     </div>
   );
 }
