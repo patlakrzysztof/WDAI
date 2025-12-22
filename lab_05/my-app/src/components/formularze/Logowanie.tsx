@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 function Login() {
-  let response;
-  const [password, setPassword] = useState("");
-  const [repPassword, setRepPassword] = useState("");
-  const [username, setUsername] = useState("");
+  let response: string;
+  const [password, setPassword]: any = useState("");
+  const [repPassword, setRepPassword]: any = useState("");
+  const [username, setUsername]: any = useState("");
 
   const handleClick = () => {
     if (password !== repPassword) {

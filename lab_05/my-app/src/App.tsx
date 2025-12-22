@@ -2,9 +2,8 @@
 // import Welcome from "./components/Welcome";
 // import Goodbye from "./components/Goodbye";
 
-import Form from "./components/formularze/Formularz";
-import Password from "./components/formularze/Haslo";
-import Login from "./components/formularze/Logowanie";
+import Update from "./components/inne/Aktualizacja";
+import Ternary from "./components/inne/Ternary";
 
 // zad 1
 // import ShoppingCart from "./components/koszyk/Koszyk";
@@ -14,6 +13,11 @@ import Login from "./components/formularze/Logowanie";
 // import Counter from "./components/liczniki/Licznik";
 // import NewCounter from "./components/liczniki/NowyLicznik";
 
+// zad 3
+// import Form from "./components/formularze/Formularz";
+// import Password from "./components/formularze/Haslo";
+// import Login from "./components/formularze/Logowanie";
+
 function App() {
   return (
     <div>
@@ -21,18 +25,19 @@ function App() {
       <Welcome name="Sara" />
       <Welcome name="Jan" />
       <Goodbye name="Jan" /> */}
-
       {/* zad1
       <ShoppingCart />
       <NewShoppingCart /> */}
-
       {/* zad2
       <Counter />
       <NewCounter /> */}
-
+      {/* zad3
       <Form />
       <Password />
-      <Login />
+      <Login /> */}
+      zad4
+      <Ternary />
+      <Update />
     </div>
   );
 }

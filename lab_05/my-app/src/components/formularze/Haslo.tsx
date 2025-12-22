@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 function Password() {
-  let response;
-  const [password, setPassword] = useState("");
-  const [repPassword, setRepPassword] = useState("");
+  let response: string;
+  const [password, setPassword]: any = useState("");
+  const [repPassword, setRepPassword]: any = useState("");
 
   if (password === "") {
     response = "Proszę wprowadzić hasło";

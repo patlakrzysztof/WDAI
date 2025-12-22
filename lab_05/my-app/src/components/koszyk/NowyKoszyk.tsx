@@ -1,7 +1,13 @@
 import Product from "./Produkt";
 
 function NewShoppingCart() {
-  const products = ["Jabłko", "Gruszka", "Banan", "Pomarańcza", "Kiwi"];
+  const products: string[] = [
+    "Jabłko",
+    "Gruszka",
+    "Banan",
+    "Pomarańcza",
+    "Kiwi",
+  ];
 
   return (
     <div>

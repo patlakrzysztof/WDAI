@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Form() {
-  const [text, setText] = useState("");
+  const [text, setText]: any = useState("");
 
   return (
     <div>
