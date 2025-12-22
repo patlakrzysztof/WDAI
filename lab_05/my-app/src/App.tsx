@@ -2,9 +2,6 @@
 // import Welcome from "./components/Welcome";
 // import Goodbye from "./components/Goodbye";
 
-import Update from "./components/inne/Aktualizacja";
-import Ternary from "./components/inne/Ternary";
-
 // zad 1
 // import ShoppingCart from "./components/koszyk/Koszyk";
 // import NewShoppingCart from "./components/koszyk/NowyKoszyk";
@@ -17,6 +14,14 @@ import Ternary from "./components/inne/Ternary";
 // import Form from "./components/formularze/Formularz";
 // import Password from "./components/formularze/Haslo";
 // import Login from "./components/formularze/Logowanie";
+
+// zad 4
+// import Update from "./components/inne/Aktualizacja";
+// import Ternary from "./components/inne/Ternary";
+
+// zad 5
+import Students from "./components/studenci/Studenci";
+import StudentManager from "./components/studenci/StudentManager";
 
 function App() {
   return (
@@ -35,9 +40,11 @@ function App() {
       <Form />
       <Password />
       <Login /> */}
-      zad4
+      {/* zad4
       <Ternary />
-      <Update />
+      <Update /> */}
+      <Students />
+      <StudentManager />
     </div>
   );
 }

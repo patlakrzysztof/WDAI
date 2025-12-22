@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 function Update() {
-  const [product, setProduct] = useState({
+  const [product, setProduct]: any = useState({
     name: "Pomidor",
     price: 50,
   });
 
   const changePrice = () => {
-    setProduct((prev) => ({
+    setProduct((prev: any) => ({
       ...prev,
       price: 100,
     }));
