@@ -2,12 +2,17 @@
 // import Welcome from "./components/Welcome";
 // import Goodbye from "./components/Goodbye";
 
+import Form from "./components/formularze/Formularz";
+import Password from "./components/formularze/Haslo";
+import Login from "./components/formularze/Logowanie";
+
 // zad 1
 // import ShoppingCart from "./components/koszyk/Koszyk";
 // import NewShoppingCart from "./components/koszyk/NowyKoszyk";
 
-import Counter from "./components/liczniki/Licznik";
-import NewCounter from "./components/liczniki/NowyLicznik";
+// zad 2
+// import Counter from "./components/liczniki/Licznik";
+// import NewCounter from "./components/liczniki/NowyLicznik";
 
 function App() {
   return (
@@ -21,8 +26,13 @@ function App() {
       <ShoppingCart />
       <NewShoppingCart /> */}
 
+      {/* zad2
       <Counter />
-      <NewCounter />
+      <NewCounter /> */}
+
+      <Form />
+      <Password />
+      <Login />
     </div>
   );
 }
