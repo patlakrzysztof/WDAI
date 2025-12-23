@@ -1,5 +1,11 @@
+import Counter from "./Licznik";
+
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <Counter />
+    </div>
+  );
 }
 
 export default App;
