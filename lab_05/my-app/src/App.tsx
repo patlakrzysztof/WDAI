@@ -2,9 +2,6 @@
 // import Welcome from "./components/Welcome";
 // import Goodbye from "./components/Goodbye";
 
-import UserComment from "./components/produkty/Komentarz";
-import UserComments from "./components/produkty/Komentarze";
-
 // zad 1
 // import ShoppingCart from "./components/koszyk/Koszyk";
 // import NewShoppingCart from "./components/koszyk/NowyKoszyk";
@@ -30,6 +27,10 @@ import UserComments from "./components/produkty/Komentarze";
 // import CounterEff from "./components/efekty/LicznikEff";
 // import Countdown from "./components/efekty/Odliczanie";
 // import Title from "./components/efekty/Tytul";
+
+// zad7
+// import UserComment from "./components/produkty/Komentarz";
+// import UserComments from "./components/produkty/Komentarze";
 
 function App() {
   return (
@@ -58,8 +59,8 @@ function App() {
       <CounterEff />
       <Title />
       <Countdown /> */}
-      zad7
-      <UserComments />
+      {/* zad7
+      <UserComments /> */}
     </div>
   );
 }
