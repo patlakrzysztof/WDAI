@@ -4,7 +4,7 @@ var app = express();
 app.use(express.json());
 const sequelize = require("./database"); // connect to database
 const Book = require("./models/book");
-
+sequelize.sync();
 const jwt = require("jsonwebtoken"); // token verification
 const { SECRET_KEY } = require("./auth");
 const { authenticateToken } = require("./auth");

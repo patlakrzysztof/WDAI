@@ -4,6 +4,7 @@ var app = express();
 app.use(express.json());
 const sequelize = require("./database"); // connect to database
 const Order = require("./models/order");
+sequelize.sync();
 
 const jwt = require("jsonwebtoken"); // token verification
 const { SECRET_KEY } = require("./auth");
@@ -54,6 +55,14 @@ app.get("/api/orders/:userId", async (req, res) => {
 app.post("/api/orders", authenticateToken, async (req, res) => {
   try {
     const { userId, bookId, quantity } = req.body;
+    try {
+      const hasBook = await fetch("http://localhost:3001/api/books/" + bookId);
+      if (!hasBook.ok) {
+        return res.status(500).json({ error: "book not found" });
+      }
+    } catch {
+      res.status(500).json({ error: "Did not connect to Bookservice" });
+    }
     if (!userId || !bookId || !quantity) {
       return res.status(400).json({ error: "No Data" });
     }

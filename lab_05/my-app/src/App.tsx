@@ -11,9 +11,9 @@
 // import NewCounter from "./components/liczniki/NowyLicznik";
 
 // zad 3
-// import Form from "./components/formularze/Formularz";
-// import Password from "./components/formularze/Haslo";
-// import Login from "./components/formularze/Logowanie";
+import Form from "./components/formularze/Formularz";
+import Password from "./components/formularze/Haslo";
+import Login from "./components/formularze/Logowanie";
 
 // zad 4
 // import Update from "./components/inne/Aktualizacja";
@@ -45,10 +45,10 @@ function App() {
       {/* zad2
       <Counter />
       <NewCounter /> */}
-      {/* zad3
+      zad3
       <Form />
       <Password />
-      <Login /> */}
+      <Login />
       {/* zad4
       <Ternary />
       <Update /> */}
