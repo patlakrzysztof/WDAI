@@ -28,9 +28,6 @@ function App() {
         <Route path="/dodaj" element={<AddArticle />} />
       </Routes>
     </BrowserRouter>
-    // <div>
-    //   <Counter/>
-    // </div>
   );
 }
 
