@@ -17,7 +17,15 @@ function Article() {
   }
 
   return (
-    <div>
+    <div
+      style={{
+        margin: "2rem 10rem",
+        padding: "1rem",
+        backgroundColor: "#f9f9f9",
+        borderRadius: "12px",
+        boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+      }}
+    >
       <h1>{article.title}</h1>
       <p>{article.body}</p>
       <p>ID: {article.id}</p>
